@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160728082636) do
+ActiveRecord::Schema.define(version: 20160728085753) do
 
   create_table "businesses", force: :cascade do |t|
     t.text     "company_name"
@@ -21,6 +21,23 @@ ActiveRecord::Schema.define(version: 20160728082636) do
     t.text     "branch_location"
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
+  end
+
+  create_table "images", force: :cascade do |t|
+    t.string   "file_id"
+    t.integer  "promotion_id"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+  end
+
+  add_index "images", ["promotion_id"], name: "index_images_on_promotion_id"
+
+  create_table "promotions", force: :cascade do |t|
+    t.text     "name"
+    t.text     "description"
+    t.decimal  "point_cost"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
   end
 
 end
